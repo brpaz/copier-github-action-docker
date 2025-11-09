@@ -1,0 +1,24 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  default:
+    cmds:
+      - task -l
+    silent: true
+
+  lint:
+    cmds:
+      - task lint-docker
+      - task lint-shell
+
+  lint-docker:
+    cmds:
+      - hadolint Dockerfile
+
+  lint-shell:
+    cmds:
+      - shellcheck *.sh
+
+

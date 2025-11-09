@@ -1,0 +1,22 @@
+name: "{{ project_name }}"
+description: "{{ project_description }}"
+branding:
+  icon: "{{ branding_icon | default('terminal') }}"
+  color: "{{ branding_color | default('blue') }}"
+inputs:
+  name:
+    description: "The name of the user"
+    required: true
+    default: "world"
+  greeting:
+    description: "The greeting message"
+    required: false
+    default: "Hello"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  {% raw %}
+  args:
+    - ${{ inputs.greeting }}
+    - ${{ inputs.name }}
+  {% endraw %}
